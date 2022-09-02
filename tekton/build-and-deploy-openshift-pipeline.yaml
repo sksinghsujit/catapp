@@ -9,7 +9,8 @@ spec:
   params:
   - name: BUILDER_IMAGE
     description: The location of the buildah builder image.
-    default: quay.io/buildah/stable:v1.11.0
+    #default: quay.io/buildah/stable:v1.11.0
+    default: registry.access.redhat.com/ubi8/buildah
   - name: DOCKERFILE
     description: Path to the Dockerfile to build.
     default: ./Dockerfile
@@ -39,8 +40,8 @@ spec:
     volumeMounts:
     - name: varlibcontainers
       mountPath: /var/lib/containers
-    securityContext:
-      privileged: true
+    #securityContext:
+    #  privileged: true
 
   - name: push
     image: $(inputs.params.BUILDER_IMAGE)
@@ -49,8 +50,8 @@ spec:
     volumeMounts:
     - name: varlibcontainers
       mountPath: /var/lib/containers
-    securityContext:
-      privileged: true
+    #securityContext:
+    #  privileged: true
 
   volumes:
   - name: varlibcontainers
